@@ -9,6 +9,9 @@ app = Flask(__name__)
 app.config['SECRET'] = '6LfylFYaAAAAANOM0EdY1ohBa-jVwojcuD6Mt_3I'
 import os
 
+def returnerr(msg, code):
+    return render_template("error.html", msg=msg, code=code)
+
 app.config['SECRET_KEY'] = 'uhh'
 static = os.path.join('static')
 @app.route('/', methods = ['GET'])
@@ -31,12 +34,13 @@ def admin():
 
     
     
-    if userid in usernames:
+    if userid in usernames and not 0 or "0":
 
 
         username = usernames[userid]
         return render_template('admin.html', username=username)
-    return redirect('/home')
+    else:
+        return returnerr("Sorry, please signin to access this page", "403 - Forbidden"), 403
 @app.route('/login', methods = ['GET','POST'])
 def login():
     username = request.cookies.get('username')
