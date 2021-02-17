@@ -15,7 +15,7 @@
 		{% if username %}
 			Welcome {{ username }}.
 
-      <a href="{{ url_for('admin' }}">Admin</a>
+      <a href="{{ url_for('admin') }}">Admin</a>
 			<a href="{{ url_for('logout') }}">Click here</a> to logout.
 		{% else %}
 			You are not logged in.			
