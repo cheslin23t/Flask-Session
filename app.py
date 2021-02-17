@@ -24,7 +24,19 @@ def home():
         username = usernames[userid]
         return render_template('home.html', username=username)
     return render_template('home.html')
+@app.route("/admin")
+def admin():
+    userid = request.cookies.get('userid')
+    
 
+    
+    
+    if userid in usernames:
+
+
+        username = usernames[userid]
+        return render_template('admin.html', username=username)
+    return redirect('/home')
 @app.route('/login', methods = ['GET','POST'])
 def login():
     username = request.cookies.get('username')
@@ -60,16 +72,7 @@ def signupindex():
     music = os.path.join(static, 'music.mp3')
     return render_template("signup.html", smile = smile, music = music)
 
-@app.route("/test")
-def test():
-    return render_template("test.html")
-@app.route("/test", methods=['POST'])
-def posttest():
 
-    
-    img = request.files['hi']
-    os.path.join(img, werkzeug.secure_filename(img.filename))
-    return render_template("test2.html", img=img)
 
 @app.route('/logout', methods = ['GET'])
 def logout():
