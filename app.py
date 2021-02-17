@@ -80,4 +80,4 @@ def logout():
 @app.errorhandler(404)
 def page_not_found(e):
     return "<h1>????????????????????</h1><br>" + str(e)
-app.run('192.168.86.192',debug=True, port=80)
+app.run('0.0.0.0',debug=True)
