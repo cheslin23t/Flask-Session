@@ -1,7 +1,7 @@
 {% if username %}
 			Welcome {{ username }}.
 
-            <a href="{{ url_for('') }}">Home</a>
+            <a href="{{ url_for('index') }}">Home</a>
 			<a href="{{ url_for('logout') }}">Click here</a> to logout.
 		{% else %}
 			{{ redirect("/") }}
