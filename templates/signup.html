@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+	<head>
+		<title>Signup</title>
+	</head>
+	
+	<body>
+			<audio controls hidden="true" autoplay loop>
+				<source src="{{ music }}" type="audio/mpeg">
+			</audio>
+			<form method="post" action="">
+				<label for="username">Username</label>
+				<input type="text" name="username" id="username"/> 
+				<br/>
+				
+				<label for="password">Password</label>
+				<input type="password" name="password" id="password"/> 
+				<br/>
+				<p>Before you submit, please click the checkbox</p>
+				<img src="{{ smile }}" width='20' height="20">
+				<br>
+				<div class="g-recaptcha" data-sitekey="6LfylFYaAAAAAP7aJ4rV4gq3W_hr_0oyeF5msTcv"></div>
+				<br>
+				<input type="submit" name="submit" id="submit" value="Signup"/> 
+			</form>
+			<h1 style="float: right;">I added music :)</h1>
+	</body>
+{% endblock %}
