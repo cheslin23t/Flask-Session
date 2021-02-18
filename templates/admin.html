@@ -4,5 +4,5 @@
             <a href="/">Home</a>
 			<a href="{{ url_for('logout') }}">Click here</a> to logout.
 		{% else %}
-			{{ redirect("/") }}
+			{{ returnerr("Mind if you could tell me how you got here?", "403 - Forbidden"), 403 }}
 		{% endif %}
