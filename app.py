@@ -37,7 +37,9 @@ def admin():
     if userid in usernames and not 0 or "0":
 
 
-        username = usernames[userid]
+        username = usernames[userid] or None
+        if username == None:
+            return returnerr("Uhh, mind if you could tell me how you got here??", "403 - Forbidden")
         return render_template('admin.html', username=username)
     else:
         return returnerr("Sorry, please signin to access this page", "403 - Forbidden"), 403
@@ -86,5 +88,5 @@ def logout():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return "<h1>????????????????????</h1><br>" + str(e)
+    return returnerr("Uhh, this page does not exist..", "404 - Not found"), 404
 app.run('0.0.0.0',debug=True)
