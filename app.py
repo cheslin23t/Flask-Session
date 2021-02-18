@@ -36,7 +36,8 @@ def admin():
     
     if userid in usernames and not 0 or "0":
 
-
+        if not userid in usernames:
+            return returnerr("Please don't try to hack into the admin page - It won't work anyways ;)", "403 - Forbidden")
         username = usernames[userid] or None
         if username == None:
             return returnerr("Uhh, mind if you could tell me how you got here??", "403 - Forbidden")
