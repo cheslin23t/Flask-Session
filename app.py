@@ -78,7 +78,7 @@ def signup():
         usernames[str(max(usrid, -usrid))] = username
         return redirect("/login")
     else:
-        return "<h1>Like in cort, you are guilty until proven otherwise - Same thing here, you are a robot until proven otherwise</h1><h3>Hint: Click captcha</h3><br>" + render_template("signup.html")
+        return "<h1>Like in court, you are guilty until proven otherwise - Same thing here, you are a robot until proven otherwise</h1><h3>Hint: Click captcha</h3><br>" + render_template("signup.html")
 
 @app.route("/signup")
 def signupindex():
