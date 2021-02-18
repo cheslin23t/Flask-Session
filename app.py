@@ -1,7 +1,7 @@
 from flask import url_for, Flask, flash, render_template, request, make_response, flash, redirect
 import werkzeug
-
-
+import requests
+import json
 users = {}
 userids = {}
 usernames = {}
@@ -69,9 +69,16 @@ def signup():
     users[username] = password
     usrid = hash(password)
     secret = app.config['SECRET']
-    userids[username] = str(max(usrid, -usrid))
-    usernames[str(max(usrid, -usrid))] = username
-    return redirect("/login")
+
+    r = requests.post('https://www.google.com/recaptcha/api/siteverify', data = {'secret' : secret, 'response' : request.form['g-recaptcha-response']})
+    google_response = json.loads(r.text)
+    if google_response['success'] == True:
+        
+        userids[username] = str(max(usrid, -usrid))
+        usernames[str(max(usrid, -usrid))] = username
+        return redirect("/login")
+    else:
+        return "<h1>Like in cort, you are guilty until proven otherwise - Same thing here, you are a robot until proven otherwise</h1><h3>Hint: Click captcha</h3><br>" + render_template("signup.html")
 
 @app.route("/signup")
 def signupindex():
