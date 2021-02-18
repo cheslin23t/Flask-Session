@@ -94,10 +94,8 @@ def logout():
     resp.delete_cookie('userid')
     return resp
 
-def http_error_handler(error):
+@app.errorhandler(range(400, 599))
+def uhoh(error):
     return returnerr("Sorry, we encountered an error.. Us robots don't know what this means: " + error + ".. Sorry :/", error.code)
 
-for error in range(400, 599): # or with other http code you consider as error
-    app.error_handler_spec[None][error] = http_error_handler
-app.run('0.0.0.0',debug=True)
 
