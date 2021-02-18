@@ -96,5 +96,6 @@ def logout():
 
 @app.errorhandler(Exception)
 def all_exception_handler(error):
-   return returnerr("Sorry, we encountered an error.. Us robots don't know what this means: " + error + ".. Sorry :/", error.code)
+    
+    return returnerr("Sorry, we encountered an error.. Us robots don't know what this means: " + str(error) + ".. Sorry :/", error.code)
 
