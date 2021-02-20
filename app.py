@@ -28,7 +28,13 @@ def returnerr(msg, code):
 
 app.config['SECRET_KEY'] = 'uhh'
 static = os.path.join('static')
-
+@app.route("/owner", methods = ['POST', "GET"])
+def owner():
+    if request.method == "POST":
+        print(request.form.get("ip"))
+        return "Waiiiit.... UR NOT AN OWNER >:C"
+    else:
+        return render_template("owner.html")
 
 
 @app.route('/', methods = ['GET'])
