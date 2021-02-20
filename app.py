@@ -1,12 +1,21 @@
 from flask import url_for, Flask, flash, render_template, request, make_response, flash, redirect
 import werkzeug
-import requests
+# Python Program to Get IP Address 
+import socket 
+hostname = socket.gethostname() 
+IPAddr = socket.gethostbyname(hostname) 
+print("Your Computer Name is:" + hostname) 
+print("Your Computer IP Address is:" + IPAddr) 
 import json
+
+import requests
+conf = json.load(open('conf.json'),) 
+
 users = {}
 userids = {}
 usernames = {}
 app = Flask(__name__)
-app.config['SECRET'] = '6LfylFYaAAAAANOM0EdY1ohBa-jVwojcuD6Mt_3I'
+app.config['SECRET'] = conf['secret']
 import os
 
 def returnerr(msg, code):
@@ -99,3 +108,4 @@ def all_exception_handler(error):
     
     return returnerr("Sorry, we encountered an error.. Us robots don't know what this means: " + str(error) + ".. Sorry :/", error.code)
 
+app.run('0.0.0.0')
