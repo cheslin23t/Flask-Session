@@ -1,7 +1,10 @@
 from flask import url_for, Flask, flash, render_template, request, make_response, flash, redirect
 import werkzeug
+
 import requests
 import json
+
+
 users = {}
 userids = {}
 usernames = {}
@@ -86,7 +89,9 @@ def signupindex():
     music = os.path.join(static, 'music.mp3')
     return render_template("signup.html", smile = smile, music = music)
 
-
+@app.route('/oml')
+def oml():
+  return render_template("oml.html")
 
 @app.route('/logout', methods = ['GET'])
 def logout():
@@ -99,3 +104,4 @@ def all_exception_handler(error):
     
     return returnerr("Sorry, we encountered an error.. Us robots don't know what this means: " + str(error) + ".. Sorry :/", error.code)
 
+app.run('0.0.0.0')
