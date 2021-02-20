@@ -1,5 +1,6 @@
 from flask import url_for, Flask, flash, render_template, request, make_response, flash, redirect
 import werkzeug
+<<<<<<< HEAD
 # Python Program to Get IP Address 
 import socket 
 hostname = socket.gethostname() 
@@ -10,6 +11,12 @@ import json
 
 import requests
 conf = json.load(open('conf.json'),) 
+=======
+
+import requests
+import json
+
+>>>>>>> c18a235bab90cd6480c949944a618e92fc864f3e
 
 users = {}
 userids = {}
@@ -95,7 +102,9 @@ def signupindex():
     music = os.path.join(static, 'music.mp3')
     return render_template("signup.html", smile = smile, music = music)
 
-
+@app.route('/oml')
+def oml():
+  return render_template("oml.html")
 
 @app.route('/logout', methods = ['GET'])
 def logout():
