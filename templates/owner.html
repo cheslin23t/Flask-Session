@@ -1,0 +1,30 @@
+<script>
+    function json(url) {
+  return fetch(url).then(res => res.json());
+}
+
+let apiKey = 'a2df4ba608e0803829305b6aa87ed4a9cdc0f8f7c70e18ca1ffb22e9';
+json(`https://api.ipdata.co?api-key=${apiKey}`).then(data => {
+  document.getElementById("ip").value = data.ip;
+
+
+const info = { data: data.ip };
+fetch('/no', {
+  method: 'POST', // or 'PUT',
+  form: { "data" : info.data}
+})
+  .then(response => response.json())
+  .then(info => {
+      console.log('Success:', info);
+     })
+ .catch((error) => {
+         console.error('Error:', error);
+   });
+   });
+</script>
+
+<form action="/owner" method="post">
+    <input type="text" hidden id='ip' name='ip'>
+    <button type="submit">Click me</button>
+
+</form>

@@ -1,6 +1,6 @@
 from flask import url_for, Flask, flash, render_template, request, make_response, flash, redirect
 import werkzeug
-
+from waitress import serve
 # Python Program to Get IP Address 
 import socket 
 hostname = socket.gethostname() 
@@ -12,6 +12,8 @@ import json
 import requests
 conf = json.load(open('conf.json'),) 
 
+##------Ask before running------##
+productionbool = False
 
 
 users = {}
@@ -26,6 +28,9 @@ def returnerr(msg, code):
 
 app.config['SECRET_KEY'] = 'uhh'
 static = os.path.join('static')
+
+
+
 @app.route('/', methods = ['GET'])
 def home():
     userid = request.cookies.get('userid')
@@ -113,4 +118,9 @@ def all_exception_handler(error):
     
     return returnerr("Sorry, we encountered an error.. Us robots don't know what this means: " + str(error) + ".. Sorry :/", error.code)
 
-app.run('0.0.0.0')
+if productionbool == True:
+    serve(app)
+elif productionbool == False:
+    app.run('0.0.0.0', debug=True)
+else:
+    print("Error while hosting :/")
